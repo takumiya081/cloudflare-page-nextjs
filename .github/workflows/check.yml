@@ -1,0 +1,44 @@
+name: Check
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  check:
+    name: check
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: typecheck
+        run: yarn typecheck
+
+      - name: lint
+        run: yarn lint:eslint
+
+      # - name: Make envfile
+      #   uses: SpicyPizza/create-envfile@v1.3
+      #   with:
+      #     envkey_FIREBASE_TOKEN: ${{ secrets.SECRET_KEY }}
+      #     directory: firebase
+
+      # - name: Test
+      #   run: yarn test:ci

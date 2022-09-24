@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base", "schedule:daily"],
+  "commitMessageAction": "Update",
+  "commitMessageExtra": "to {{newValue}}",
+  "commitMessageTopic": "{{depName}}",
+  "packageRules": [
+    {
+      "matchPackageNames": ["@types/node"],
+      "allowedVersions": "16.x"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["node"],
+      "matchPaths": ["firebase/emulator/*"],
+      "versioning": "semver",
+      "major": {
+        "enabled": false
+      },
+      "minor": {
+        "enabled": false
+      }
+    }
+  ]
+}
