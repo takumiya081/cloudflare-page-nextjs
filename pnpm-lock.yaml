@@ -39,7 +39,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   react-firebase-hooks: 5.0.3
-  react-hook-form: 7.36.0
+  react-hook-form: 7.52.0
   typescript: 4.8.3
   zod: 3.19.1
 
@@ -55,7 +55,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-firebase-hooks: 5.0.3_bs2pv2aljdhunuezeworw5vphy
-  react-hook-form: 7.36.0_react@18.2.0
+  react-hook-form: 7.52.0_react@18.2.0
   zod: 3.19.1
 
 devDependencies:
@@ -5870,11 +5870,11 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-hook-form/7.36.0_react@18.2.0:
-    resolution: {integrity: sha512-2PmRhTDH90/G1XWbUGpfuFBf7wxj9kYvzPqoZCv4wUGBIfuac0fK3up9sbeoz0ghpLYcFFXRVDKMUXgMutLXTw==}
+  /react-hook-form/7.52.0_react@18.2.0:
+    resolution: {integrity: sha512-mJX506Xc6mirzLsmXUJyqlAI3Kj9Ph2RhplYhUVffeOQSnubK2uVqBFOBJmvKikvbFV91pxVXmDiR+QMF19x6A==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
-      react: ^16.8.0 || ^17 || ^18
+      react: ^16.8.0 || ^17 || ^18 || ^19
     dependencies:
       react: 18.2.0
     dev: false

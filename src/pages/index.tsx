@@ -2,6 +2,7 @@ import React, {forwardRef} from 'react';
 
 import {Button} from '@mantine/core';
 import type {MouseEventHandler} from 'react';
+import {useFieldArray, useForm} from 'react-hook-form';
 
 import img from '../../public/image.jpg';
 
@@ -18,7 +19,7 @@ type FileInputProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>, options: {result: Value}) => void;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>;
 
-export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
+const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
   ({onChange, beforeUpload, ...props}, ref) => {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises -- if に promiseのmethodを入れるとerrorになるぽい。他の書き方も思い浮かばないのでとりあえず無効化
     const handleChange: React.ChangeEventHandler<HTMLInputElement> = async (e) => {
@@ -54,6 +55,12 @@ const IndexPage = (): JSX.Element => {
     e.currentTarget.value = '';
   };
 
+  const {control} = useForm<{test: Array<{key: string; url: string}>}>();
+  const {fields, append} = useFieldArray({
+    control,
+    name: 'test',
+  });
+
   return (
     <>
       <Button
@@ -73,11 +80,17 @@ const IndexPage = (): JSX.Element => {
         }}
         type="file"
         onChange={(e, ops) => {
-          console.log(e, ops);
-          window.alert(ops.result.file.name);
+          console.log(e, ops, fields);
+          append({key: ops.result.key, url: ops.result.url});
         }}
         onClick={handleClickFileInput}
       />
+      <div>
+        {fields.map((field) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img key={field.key} alt={field.key} height="100px" src={field.url} width="100px" />
+        ))}
+      </div>
       <div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img alt="" src={img.src} style={{width: '100%', height: 'auto'}} />
