@@ -76,7 +76,12 @@ const IndexPage = (): JSX.Element => {
         beforeUpload={async (f) => {
           console.log('beforeupload', f);
 
-          return {key: f.name, url: URL.createObjectURL(f), file: f};
+          const r = await new Promise<any>((resolve) => {
+            setTimeout(() => {
+              resolve({key: f.name, url: URL.createObjectURL(f), file: f});
+            }, 1000);
+          });
+          return r;
         }}
         type="file"
         onChange={(e, ops) => {
