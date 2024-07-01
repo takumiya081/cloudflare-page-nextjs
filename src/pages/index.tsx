@@ -66,7 +66,11 @@ const IndexPage = (): JSX.Element => {
       <FileInput
         ref={ref}
         accept="image/png,image/jpg,image/jpeg,image/gif"
-        beforeUpload={async (f) => ({key: f.name, url: URL.createObjectURL(f), file: f})}
+        beforeUpload={async (f) => {
+          console.log('beforeupload', f);
+
+          return {key: f.name, url: URL.createObjectURL(f), file: f};
+        }}
         type="file"
         onChange={(e, ops) => {
           console.log(e, ops);
