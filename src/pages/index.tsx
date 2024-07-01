@@ -74,6 +74,7 @@ const IndexPage = (): JSX.Element => {
         type="file"
         onChange={(e, ops) => {
           console.log(e, ops);
+          window.alert(ops.result.file.name);
         }}
         onClick={handleClickFileInput}
       />
